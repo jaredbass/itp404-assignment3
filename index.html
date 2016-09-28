@@ -1,0 +1,62 @@
+<html>
+<head>
+	
+
+<title> AJAX Demo </title>
+</head>
+<body style="background-color: #c7e9d8; color: white; margin:0%; padding:0%; font-family: avenir;">
+<text style="font-size: 50pt; text-align: center; padding-top: 2%; display: block;"> Reddit </text>
+
+
+
+	Put in Reddit Endpoint:
+<input type="text" id="urls"> </input>
+<br>
+<input type="submit" onclick="getSubreddits(document.getElementById('urls').value)"></input>
+
+
+<script type="template/handlebars" id="reddit-template">
+
+{{#each data}}
+ 	<div class="children" style="font-family: futura; text-align: center; background-color: #a7b3a3;  ">
+
+ 	<h1 style="font-family: avenir; padding-top: 1%;"> <a href="{{data.url}}">{{data.title}} </a></h1>
+ 	<p style="font-size: 32pt;"> Score:  {{data.score}} </p>
+ 	<p style="font-size: 32pt;">Comment Count: {{data.num_comments}} </p>
+ 	<p class="description" id="description" style="display:none;"> Description: {{data.selftext}}</p>
+   
+    <input type="button" name="answer" value="show" onclick="showDiv()">
+ 
+ 	<p> Archives: {{data.archived}} </p>
+ 	{{#if data.archived}}
+ 	<p> It is in the archives. </p>
+ 	{{$else}}
+ 	<p> Not in archives. </p>
+
+ 	{{/if}}
+
+
+
+
+ 	</div>
+
+ 	{{else}}{
+
+ 		<p> Nothing found. </p>
+ 	}
+{{/each}}
+
+</script>
+
+<div id="reddit">
+
+</div>
+<script src="jquery-1.9.1.min.js">
+    </script>
+<script src="main.js"></script>
+<script src="handlebars-v4.0.5.js"></script>
+
+
+
+</body>
+</html>
